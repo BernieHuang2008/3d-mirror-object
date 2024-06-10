@@ -11,7 +11,7 @@
 <body>
 <script src="https://threejs.org/build/three.js"></script>
 <script>
-  let scene, camera, renderer, cube, video, texture;
+  var scene, camera, renderer, cube, video, texture;
 
   async function init() {
     inited = true;
@@ -19,7 +19,7 @@
     scene = new THREE.Scene();
     
     // 创建摄像头
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    window.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
 
     // 创建渲染器
@@ -66,8 +66,8 @@
   inited = false;
   function onWindowResize() {
     if (!inited) init();
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    window.camera.aspect = window.innerWidth / window.innerHeight;
+    window.camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
