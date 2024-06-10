@@ -14,6 +14,7 @@
   let scene, camera, renderer, cube, video, texture;
 
   async function init() {
+    inited = true;
     // 创建场景
     scene = new THREE.Scene();
     
@@ -59,15 +60,19 @@
     renderer.render(scene, camera);
   }
 
-  // window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener('resize', onWindowResize, false);
 
+
+  inited = false;
   function onWindowResize() {
+    if (!inited) init();
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
-  init();
+  if (!inited)
+      init();
 </script>
 </body>
 </html>
